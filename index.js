@@ -12,6 +12,32 @@ app.use(
 )
 app.use(express.json())
 
+// rotas da API
+app.post('/person', async (req, res) => {
+
+// req.body
+const {name, salary} = req.body
+
+if (!name){
+  res.status(422).json({error: 'O nome é obrigatório!'})
+}
+
+const person = {
+  name,
+  salary
+}
+
+try{
+  await Person.create(person)
+
+  res.status(201).json({message: 'Pessoa inserida com sucesso!'})
+
+}catch (error){
+  res.status(500).json({error : error})
+}
+
+})
+
 
 // rota inical / endpoint
 app.get('/', (req, res) =>{
