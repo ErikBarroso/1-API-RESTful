@@ -1,4 +1,5 @@
-const router = require('express').Router()
+import { Router } from 'express' ;
+const router = Router();
 const Person = require('../models/Person')
 
 
