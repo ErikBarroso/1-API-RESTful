@@ -1,7 +1,7 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const Person = require('./models/Person')
 
 
 // forma de ler JSON // middlewares
@@ -13,31 +13,9 @@ app.use(
 app.use(express.json())
 
 // rotas da API
-app.post('/person', async (req, res) => {
+const personRoutes = require('./routes/personRoutes')
 
-// req.body
-const {name, salary} = req.body
-
-if (!name){
-  res.status(422).json({error: 'O nome é obrigatório!'})
-}
-
-const person = {
-  name,
-  salary
-}
-
-try{
-  await Person.create(person)
-
-  res.status(201).json({message: 'Pessoa inserida com sucesso!'})
-
-}catch (error){
-  res.status(500).json({error : error})
-}
-
-})
-
+app.use('/person', personRoutes)
 
 // rota inical / endpoint
 app.get('/', (req, res) =>{
@@ -48,8 +26,8 @@ app.get('/', (req, res) =>{
 })
 
 //entregar uma porta
-const DB_USER = 'Erik'
-const DB_PASSWORD = 'Erik425109'
+const DB_USER = process.env.DB_USER
+const DB_PASSWORD = process.env.DB_PASSWORD
 
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@teste1.r5yvrb1.mongodb.net/bancodaapi20?retryWrites=true&w=majority`)
 .then(() => {
