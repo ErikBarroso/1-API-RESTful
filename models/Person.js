@@ -5,4 +5,5 @@ const Person = mongoose.model('Person',{
   salary: Number,
 })
 
-module.exports = Person
+//module.exports = person
+export default Person

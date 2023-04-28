@@ -1,7 +1,6 @@
-require = require ("esm")(module);
-//import 'dotenv/config';
-
-import  express  from './express';
+//require = require ("esm")(module);
+import 'dotenv/config';
+import  express  from 'express';
 const app = express();
 import mongoose from 'mongoose';
 
@@ -16,7 +15,8 @@ app.use(
 app.use(express.json())
 
 // rotas da API
-const personRoutes = require('./routes/personRoutes')
+
+import personRoutes from './routes/personRoutes.js';
 
 app.use('/person', personRoutes)
 

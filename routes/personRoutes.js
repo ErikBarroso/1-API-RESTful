@@ -1,6 +1,7 @@
 import { Router } from 'express' ;
 const router = Router();
-const Person = require('../models/Person')
+//const Person = require('../models/Person')
+import Person from '../models/Person.js'
 
 
 // cadastrando pessoa
@@ -109,4 +110,4 @@ router.delete('/:id', async (req, res) => {
 
 })
 
-  module.exports = router
+export default router;
