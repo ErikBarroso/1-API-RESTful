@@ -1,35 +1,23 @@
 import { Router } from 'express' ;
 const router = Router();
 import Person from '../models/Person.js';
-import {body, validationResult} from 'express-validator';
-
+import validateUser from '../validacao.js';
 
 // cadastrando pessoa
-router.post('/',[
-  body('name').notEmpty().withMessage ("O nome é obrigatório"),
-  body('name').isString().withMessage ("O nome só pode conter letras"),
-  body('salary').isNumeric().withMessage("Salário só pode conter números")
-
-] ,async (req, res) => {
+router.post('/',validateUser(), async (req, res) => {
 
   const {name, salary} = req.body
   const person = {
     name,
     salary
-  }
-    
-const erros = validationResult(req);
-if(!erros.isEmpty()){
-  return res.status(400).json({erros: erros.array()})
-}
+  }   
+
 await Person.create(person)
 res.json({msg: "Usuário cadastrado com sucesso!"});
 });
-
   
 //buscando todas as pessoas
   router.get('/', async (req, res) => {
-
     try {
 
       const people =  await Person.find()
