@@ -18,11 +18,10 @@ const atualizarUsuario = async (req, res) => {
         return
     }
     res.status(200).json(person)
-    // em que momento desse código esse person é att
+    // em que momento desse código esse person é att?
 }catch(error){
   res.status(500).json({error : error})
 }
-
 }
 
 export default atualizarUsuario

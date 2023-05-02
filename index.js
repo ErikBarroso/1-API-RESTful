@@ -3,8 +3,6 @@ import  express  from 'express';
 const app = express();
 import mongoose from 'mongoose';
 
-
-
 // forma de ler JSON // middlewares
 app.use(
   express.urlencoded({
@@ -37,3 +35,4 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@teste1.r5yvrb1.mongodb
   app.listen(3000)
 })
 .catch((err) => console.log(err))
+

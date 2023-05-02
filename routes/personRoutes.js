@@ -11,7 +11,7 @@ import { deletarUusuario } from './deletarUusuário.js';
 router.post('/',validateUser(), criarUsuario);
   
 //buscando todas as pessoas
-router.get('/', buscarUsuarios )
+router.get('/', buscarUsuarios.buscar )
 
 //Buscando pessoa com ID
 router.get('/:id', buscarCOmID )
