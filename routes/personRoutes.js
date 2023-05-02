@@ -8,18 +8,18 @@ import atualizarUsuario from './atualizarUsuario.js';
 import { deletarUusuario } from './deletarUusuário.js';
 
 // cadastrando pessoa
-router.post('/',validateUser(), criarUsuario);
+router.post('/',validateUser(), criarUsuario.criar);
   
 //buscando todas as pessoas
 router.get('/', buscarUsuarios.buscar )
 
 //Buscando pessoa com ID
-router.get('/:id', buscarCOmID )
+router.get('/:id', buscarCOmID.buscar )
 
 // updade
-router.patch('/:id', atualizarUsuario)
+router.patch('/:id', atualizarUsuario.atualizar)
 
 //Deletar
-router.delete('/:id', deletarUusuario)
+router.delete('/:id', deletarUusuario.deletar)
 
 export default router;
